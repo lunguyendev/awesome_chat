@@ -1,15 +1,15 @@
-var express = require('express');
+// var express = require('express');
+import express from "express";
+let app = express();
 
-var app = express();
-
-var hostname = "localhost";
-var port = 3000;
+let hostname = "localhost";
+let port = 3000;
 
 app.get("/hello",(req,res)=>{
     res.send("Hello");
 });
 
-app.listen(port,host,()=>{
+app.listen(port,hostname,()=>{
     console.log("App running at localhost:3000");
 });
 
