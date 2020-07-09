@@ -4,6 +4,7 @@ import ConnecDB from "./config/connectDB"
 import ContactModdel from "./models/contact.model"
 import dotenv  from "dotenv";
 import configViewEngine from "./config/viewEngine";
+import Router from "./routers/web"
 
 let app = express();
 dotenv.config();
@@ -12,15 +13,11 @@ ConnecDB();
 //Config view Engine
 configViewEngine(app);
 
+Router(app);
+
 let hostname = "localhost";
 let port = 3000;
 
-app.get("/", (req,res)=>{
-   return res.render('main/master');
-});
-app.get("/login",(req,res)=>{
-    return res.render('auth/loginRegister');
-})
 app.listen(process.env.APP_PORT,process.env.APP_HOST,()=>{
     console.log(`App running at ${process.env.APP_HOST}:${process.env.APP_PORT}`);
 });
