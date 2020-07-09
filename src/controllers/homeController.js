@@ -1,5 +1,5 @@
 let homeController = (req,res)=>{
-    return res.render('main/master');
+    return res.render('main/home/main');
  };
  module.exports = {
      homeController : homeController
