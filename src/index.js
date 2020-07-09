@@ -19,5 +19,5 @@ let hostname = "localhost";
 let port = 3000;
 
 app.listen(process.env.APP_PORT,process.env.APP_HOST,()=>{
-    console.log(`App running at ${process.env.APP_HOST}:${process.env.APPe_PORT}`);
+    console.log(`App running at ${process.env.APP_HOST}:${process.env.APP_PORT}`);
 });
