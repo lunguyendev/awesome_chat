@@ -1,13 +1,15 @@
 // var express = require('express');
 import express from "express";
-import ConnecDB from "./config/connectDB"
-import ContactModdel from "./models/contact.model"
+import ConnecDB from "./config/connectDB";
+import ContactModdel from "./models/contact.model";
 import dotenv  from "dotenv";
 import configViewEngine from "./config/viewEngine";
-import Router from "./routers/web"
+import Router from "./routers/web";
+import bodyParser from "body-parser";
 
 let app = express();
 dotenv.config();
+app.use(bodyParser.urlencoded({extended:true}));
 //Connect to Mongo
 ConnecDB();
 //Config view Engine
