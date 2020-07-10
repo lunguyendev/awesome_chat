@@ -1,6 +1,6 @@
-let homeController = (req,res)=>{
+let getHome = (req,res)=>{
     return res.render('main/home/main');
  };
  module.exports = {
-     homeController : homeController
+    getHome : getHome
  }
