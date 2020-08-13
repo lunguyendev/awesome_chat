@@ -1,13 +1,13 @@
 import mongoose from "mongoose";
 
 let Schema = mongoose.Schema;
-
+//Tạo Schema của user
 let UserSchema = new Schema(
     {
         username : String,
         gender : {type : String, default : "male"},
-        phone: {type : Number, default : "null"},
-        address: {type : String, default : "null"},
+        phone: {type : Number, default : null},
+        address: {type : String, default : null},
         avatar: {type : String, default : "avatar-default.jpg"},
         role: {type : String, default : "user"},
         local : {
@@ -31,4 +31,15 @@ let UserSchema = new Schema(
         deleteAt: {type: Number, default: null}
     }
 )
+
+UserSchema.statics = {
+    //Lưu user vào db
+    createItem(item){
+        return this.create(item);
+    },
+    //Tìm email trong db
+    findByEmail(email){
+        return this.findOne({'local.email':email}).exec();
+    }
+}
 module.exports = mongoose.model("user", UserSchema);
