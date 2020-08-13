@@ -18,3 +18,4 @@ let checkRegister = [
 module.exports = {
     checkRegister: checkRegister
 }
+

@@ -1,11 +1,12 @@
 // var express = require('express');
 import express from "express";
 import ConnecDB from "./config/connectDB";
-import ContactModdel from "./models/contact.model";
 import dotenv  from "dotenv";
 import configViewEngine from "./config/viewEngine";
 import Router from "./routers/web";
 import bodyParser from "body-parser";
+import flash from "connect-flash";
+import configSession from "./config/session";
 
 let app = express();
 dotenv.config();
@@ -14,6 +15,10 @@ app.use(bodyParser.urlencoded({extended:true}));
 ConnecDB();
 //Config view Engine
 configViewEngine(app);
+//use connect-flash
+app.use(flash());
+//use Session
+configSession(app);
 
 Router(app);
 
