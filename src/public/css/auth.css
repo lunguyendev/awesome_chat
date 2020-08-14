@@ -54,6 +54,9 @@ hr {
 .table a {
   color: #fff;
 }
+.my-table{
+  overflow: hidden;
+}
 
 .my-table>tbody>tr>td {
   border-top: 0px;

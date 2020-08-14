@@ -33,6 +33,8 @@
     "express-session": "^1.17.1",
     "express-validator": "^4.3.0",
     "mongoose": "^4.13.9",
+    "nodemailer": "^4.4.2",
+    "nodemailer-smtp-transport": "^2.7.4",
     "uuid": "^8.2.0"
   }
 }

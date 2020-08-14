@@ -12,7 +12,8 @@ let webRouter = (app)=>{
     router.get("/login",auth.getLogin);
     //Router để gửi form đăng ký lên hệ thống
     router.post("/register",authValid.checkRegister,auth.postRegister);
-
+    //Router để kích hoạt tài khoản qua email
+    router.get("/verify/:token",auth.activeAccount);
    
 }
 module.exports = webRouter;
