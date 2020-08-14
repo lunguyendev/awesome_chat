@@ -40,6 +40,24 @@ UserSchema.statics = {
     //Tìm email trong db
     findByEmail(email){
         return this.findOne({'local.email':email}).exec();
+    },
+    //Xóa đi user bằng id
+    removeUser(id){
+        return this.findByIdAndRemove(id).exec();
+    },
+    //Tìm user có token và sửa lại active = true và xóa token
+    activeAccount(token){
+        return this.findOneAndUpdate({
+            "local.veryfyToken": token
+        },
+        {
+            "local.veryfyToken": null,
+            "local.isActive": true,
+        }).exec();
+    },
+    //Tìm token trong db có tồn tại không
+    findToken(token){
+        return this.findOne({"local.veryfyToken": token})
     }
 }
 module.exports = mongoose.model("user", UserSchema);
