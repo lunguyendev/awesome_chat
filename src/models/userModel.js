@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import bcrypt from "bcrypt";
 
 let Schema = mongoose.Schema;
 //Tạo Schema của user
@@ -33,6 +34,10 @@ let UserSchema = new Schema(
 )
 
 UserSchema.statics = {
+    //Tìm user bằng id
+    findUserById(id){
+        return this.findById(id).exec();
+    },
     //Lưu user vào db
     createItem(item){
         return this.create(item);
@@ -58,6 +63,12 @@ UserSchema.statics = {
     //Tìm token trong db có tồn tại không
     findToken(token){
         return this.findOne({"local.veryfyToken": token})
+    }
+}
+UserSchema.methods = {
+    //Lấy password ra để so sánh
+    comparePass(password){
+        return bcrypt.compare(password,this.local.password);
     }
 }
 module.exports = mongoose.model("user", UserSchema);

@@ -8,13 +8,18 @@ let transError ={
     duplicationEmail:(email)=> `Tài khoản <strong>${email}</strong> đã được đăng ký, vui lòng đăng ký email khác`,
     deletedAcc:(email)=> `Tài khoản <strong>${email}</strong> đã bị vô hiệu hóa, vui lòng liên hệ Admin để lấy lại tài khoản`,
     activeAcc:(email) => `Tài khoản này đã được đăng ký nhưng chưa active tài khoản, vui lòng vào email <strong>${email}</strong> để active tài khoản của bạn.`,
-    isToken:'Token không tồn tại !'
+    isToken:'Token không tồn tại !',
+    loginFail:'Tài khoản hoặc mật khẩu không đúng.',
+    loginActiveAcc:"Tài khoản chưa được active, vui lòng kiểm tra email và active tài khoản.",
+    serverLogin: "Hệ thống đăng nhập xảy ra lỗi, vui lòng đăng nhập lại."
 }
 let transSuccess = {
     registerSuccess: (email) => {
         return `Tài khoản <strong>${email}</strong> được đăng ký thành công, vui lòng kiểm tra Email trước khi đăng nhập.`
     },
-    activeSuccess: 'Tài khoản được kích hoạt thành công, vui lòng đăng nhập để sử dụng dịch vụ'
+    activeSuccess: 'Tài khoản được kích hoạt thành công, vui lòng đăng nhập để sử dụng dịch vụ',
+    loginSuccess: "Đăng nhập tài khoản thành công.",
+    logoutSucess:"Đăng xuất tài khoản thành công. Hẹn gặp lại bạn nhé !"
 }
 let transEmail = {
     subject : '"Lu Communication" Xác thực tài khoản đăng ký',

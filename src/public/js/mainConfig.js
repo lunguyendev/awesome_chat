@@ -103,6 +103,14 @@ function gridPhotos(layoutNumber) {
   });
 }
 
+function showMessageLoginSuccess(){
+  let notify =$(".master-success-message").text();
+  if(notify.length)
+  {
+    alertify.notify(notify,"success",7);
+  }
+}
+
 function showButtonGroupChat() {
   $('#select-type-chat').bind('change', function() {
     if ($(this).val() === 'group-chat') {
@@ -152,6 +160,9 @@ $(document).ready(function() {
   // Cấu hình thanh cuộn
   nineScrollLeft();
   nineScrollRight();
+  
+  //Bật thông báo đăng nhập thành công
+  showMessageLoginSuccess()
 
   // Bật emoji, tham số truyền vào là id của box nhập nội dung tin nhắn
   enableEmojioneArea("17071995");
