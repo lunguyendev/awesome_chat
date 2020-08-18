@@ -63,6 +63,14 @@ UserSchema.statics = {
     //Tìm token trong db có tồn tại không
     findToken(token){
         return this.findOne({"local.veryfyToken": token})
+    },
+    //Tìm userId bằng Fb trong db
+    findByFacebookUid(uid){
+        return this.findOne({'facebook.uid':uid}).exec();
+    },
+    //Tìm userId bằng email google
+    findByGoogleUid(uid){
+        return this.findOne({'google.uid':uid}).exec();
     }
 }
 UserSchema.methods = {
