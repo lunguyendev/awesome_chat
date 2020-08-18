@@ -2,9 +2,14 @@ import express from 'express';
 import {auth,home} from './../controllers/index';
 import {authValid} from "./../validation/index";
 import initPassportLocal from './../controllers/passportController/local';
+import initPassportFB from './../controllers/passportController/facebook';
+import initPassportGG from './../controllers/passportController/google';
 import passport from "passport";
 
 initPassportLocal();
+initPassportFB();
+initPassportGG();
+
 let router = express.Router();
 let webRouter = (app)=>{
     app.use("/",router);
@@ -25,6 +30,25 @@ let webRouter = (app)=>{
         successFlash: true,
         failureFlash: true
     }))
+    //Router đăng nhập facebook
+    router.get("/auth/facebook",auth.checkLoggedOut,passport.authenticate("facebook",{scope:["email"]}));
+    //Router chuyển hướng khi đăng nhập facebook
+    router.get("/auth/facebook/callback",auth.checkLoggedOut,passport.authenticate("facebook",{
+        successRedirect: "/",
+        failureRedirect: "/login",
+        successFlash: true,
+        failureFlash: true
+    }));
+    //Routerđăng nhập bằng google
+    router.get("/auth/google",auth.checkLoggedOut,passport.authenticate("google",{scope:["email"]}));
+    //Router chuyển hướng khi đăng nhập bằng google
+    router.get("/auth/google/callback",auth.checkLoggedOut,passport.authenticate("google",{
+        successRedirect: "/",
+        failureRedirect: "/login",
+        successFlash: true,
+        failureFlash: true
+    }));
+
     
 }
 module.exports = webRouter;

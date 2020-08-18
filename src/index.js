@@ -8,7 +8,16 @@ import bodyParser from "body-parser";
 import flash from "connect-flash";
 import configSession from "./config/session";
 import passport from "passport";
+import https from "https";
+import fs from "fs"
 
+
+// This line is from the Node.js HTTPS documentation.
+const options = {
+    key: fs.readFileSync('key.pem'),
+    cert: fs.readFileSync('cert.pem')
+  };
+// Create a service (the app object is just a callback).
 let app = express();
 dotenv.config();
 app.use(bodyParser.urlencoded({extended:true}));
@@ -28,9 +37,22 @@ app.use(passport.session());
 //Sửa dụng Router
 Router(app);
 
-let hostname = "localhost";
-let port = 3000;
+// let hostname = "localhost";
+// let port = 3000;
 
-app.listen(process.env.APP_PORT,process.env.APP_HOST,()=>{
-    console.log(`App running at ${process.env.APP_HOST}:${process.env.APP_PORT}`);
+// app.listen(process.env.APP_PORT,process.env.APP_HOST,()=>{
+//     console.log(`App running at ${process.env.APP_HOST}:${process.env.APP_PORT}`);
+// });
+
+
+// Create an HTTP service.
+// http.createServer(app).listen(80);
+// Create an HTTPS service identical to the HTTP service.
+https.createServer(options, app).listen(process.env.APP_PORT,process.env.APP_HOST,()=>{
+        console.log(`App running at ${process.env.APP_HOST}:${process.env.APP_PORT}`);
 });
+
+
+
+
+

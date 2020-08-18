@@ -102,3 +102,7 @@ dist
 
 # TernJS port file
 .tern-port
+
+# Run server by https
+.pem
+*.pem
