@@ -6,7 +6,7 @@
 /*  Shake animation  */
 
 @import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600);
-
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Righteous&display=swap');
 /* @charset "UTF-8"; */
 
 body {
@@ -41,6 +41,7 @@ body {
 
 .modal-title {
   color: #2c3e50;
+  
 }
 
 hr {
@@ -49,6 +50,7 @@ hr {
 
 .login-title {
   font-size: 52px;
+  font-family: 'Righteous', cursive;
 }
 
 .table a {
