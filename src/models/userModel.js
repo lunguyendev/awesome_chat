@@ -7,7 +7,7 @@ let UserSchema = new Schema(
     {
         username : String,
         gender : {type : String, default : "male"},
-        phone: {type : Number, default : null},
+        phone: {type : String, default : null},
         address: {type : String, default : null},
         avatar: {type : String, default : "avatar-default.jpg"},
         role: {type : String, default : "user"},
@@ -71,6 +71,10 @@ UserSchema.statics = {
     //Tìm userId bằng email google
     findByGoogleUid(uid){
         return this.findOne({'google.uid':uid}).exec();
+    },
+    updateUserInfo(id,file)
+    {
+        return this.findByIdAndUpdate(id,file).exec();
     }
 }
 UserSchema.methods = {

@@ -27,15 +27,15 @@
                                 </div>
                                 <!-- edit form column -->
                                 <div class="col-md-9 personal-info">
-                                    <div class="alert alert-danger alert-dismissable">
+                                    <div class="alert alert-danger alert-dismissable user-modal-alert-error">
                                         <a class="panel-close close" data-dismiss="alert">×</a>
-                                        Update user error example.<br>
+                                        <span>Update user error example.</span> 
                                         <!-- <script>openProfileModal();</script> -->
                                     </div>
 
-                                    <div class="alert alert-success alert-dismissable">
+                                    <div class="alert alert-success alert-dismissable user-modal-alert-success">
                                         <a class="panel-close close" data-dismiss="alert">×</a>
-                                        Update user success example.<br>
+                                        <span>Update user success example.</span>
                                         <!-- <script>openProfileModal();</script> -->
                                     </div>
 
@@ -74,7 +74,7 @@
                                         <label class="col-lg-3 control-label">Giới tính:</label>
                                         <div class="col-lg-8">
                                             <label class="radio-inline col-lg-2">Nam
-                                                <input id="input-change-gender-male"  type="radio" name="gender" value="male" <% if (user.gender === 'gender') { %>
+                                                <input id="input-change-gender-male"  type="radio" name="gender" value="male" <% if (user.gender === 'male') { %>
                                                     checked
                                                 <% } %> required>
                                                 <span class="checkmark"></span>
@@ -104,7 +104,7 @@
                                         <div class="col-md-8">
                                             <input id="input-btn-update-user" type="button" class="btn btn-primary custom-background-btn-primary" name="submit" value="Lưu lại">
                                             <span></span>
-                                            <input id="input-btn-reset-update-user" type="reset" class="btn btn-default custom-background-btn-reset" value="Hủy bỏ">
+                                            <input id="input-btn-reset-update-user" type="button" class="btn btn-default custom-background-btn-reset" value="Hủy bỏ">
                                         </div>
                                     </div>
                                 </div>
