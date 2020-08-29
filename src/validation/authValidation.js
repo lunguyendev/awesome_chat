@@ -1,5 +1,5 @@
 import {check} from "express-validator/check";
-import {messErr} from "./../lang/vi";
+import {messErr} from "../lang/vi";
 
 let checkRegister = [
     check("email", messErr.email)

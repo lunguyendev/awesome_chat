@@ -1,6 +1,6 @@
 import express from 'express';
-import {auth,home} from './../controllers/index';
-import {authValid} from "./../validation/index";
+import {auth,home,user} from './../controllers/index';
+import {authValid,userValid} from "./../validation/index";
 import initPassportLocal from './../controllers/passportController/local';
 import initPassportFB from './../controllers/passportController/facebook';
 import initPassportGG from './../controllers/passportController/google';
@@ -48,6 +48,10 @@ let webRouter = (app)=>{
         successFlash: true,
         failureFlash: true
     }));
+    //Router cập nhật avatar người dùng
+    router.put("/user/update-avatar",auth.checkLoggedIn,user.userUpdateAvatar);
+    //Router cập nhật thông tin người dùng
+    router.put("/user/update-info",auth.checkLoggedIn,userValid.checkUserUpdate,user.userUpdateInfo);
 
     
 }
