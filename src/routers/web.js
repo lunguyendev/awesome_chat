@@ -19,7 +19,7 @@ let webRouter = (app)=>{
     router.get("/logout",auth.checkLoggedIn,auth.getLogout)
     //Router để login vào hệ thống 
     router.get("/login",auth.checkLoggedOut,auth.getLogin);
-    //Router để gửi form đăng ký lên hệ thốngs
+    //Router để gửi form đăng ký lên hệ thống
     router.post("/register",auth.checkLoggedOut,authValid.checkRegister,auth.postRegister);
     //Router để kích hoạt tài khoản qua email
     router.get("/verify/:token",auth.checkLoggedOut,auth.activeAccount);
@@ -52,7 +52,8 @@ let webRouter = (app)=>{
     router.put("/user/update-avatar",auth.checkLoggedIn,user.userUpdateAvatar);
     //Router cập nhật thông tin người dùng
     router.put("/user/update-info",auth.checkLoggedIn,userValid.checkUserUpdate,user.userUpdateInfo);
-
+    //Roupet cập nhật mật khẩu
+    router.put("/user/update-password",auth.checkLoggedIn,userValid.checkPassword,user.userUpdatePassword);
     
 }
 module.exports = webRouter;

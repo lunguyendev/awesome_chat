@@ -17,7 +17,18 @@ let checkUserUpdate = [
         .isLength({min:10,max:11})
         .matches(/^(0)[0-9]{9,10}$/)
 ];
+
+let checkPassword = [
+    check('currentPassword',messErr.currenPassword)
+        .matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{8,}$/),
+    check('newPassword',messErr.newPassword)
+        .matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{8,}$/),
+    check('confirmPassword',messErr.confirmPassword)
+        .custom((value,{req}) => value === req.body.newPassword)
+]
+
 module.exports = {
-    checkUserUpdate: checkUserUpdate
+    checkUserUpdate: checkUserUpdate,
+    checkPassword:checkPassword
 }
 
