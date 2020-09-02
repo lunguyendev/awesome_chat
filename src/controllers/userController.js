@@ -23,7 +23,6 @@ let storeAvatar = multer.diskStorage({
         callback(null,avatarName);
     }
 })
-
 let avatarUploadFile = multer({
     storage: storeAvatar,
     limits:{fileSize: app.avater_limit_size}

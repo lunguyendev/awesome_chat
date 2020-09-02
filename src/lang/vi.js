@@ -22,6 +22,7 @@ let transError ={
     sizeAvatarType: "Ảnh upload tối đa là 2 MB",
     userInvalue:"Tài khoản người dùng không tồn tại trên hệ thống",
     wrongPassword: "Mật khẩu hiện tại không chính xác",
+    keywordFindUser:"Lỗi từ khóa tìm kiếm",
 }
 let transSuccess = {
     registerSuccess: (email) => {

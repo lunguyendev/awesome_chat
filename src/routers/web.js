@@ -1,6 +1,6 @@
 import express from 'express';
-import {auth,home,user} from './../controllers/index';
-import {authValid,userValid} from "./../validation/index";
+import {auth,home,user,contact} from './../controllers/index';
+import {authValid,userValid,contactValid} from "./../validation/index";
 import initPassportLocal from './../controllers/passportController/local';
 import initPassportFB from './../controllers/passportController/facebook';
 import initPassportGG from './../controllers/passportController/google';
@@ -54,6 +54,7 @@ let webRouter = (app)=>{
     router.put("/user/update-info",auth.checkLoggedIn,userValid.checkUserUpdate,user.userUpdateInfo);
     //Roupet cập nhật mật khẩu
     router.put("/user/update-password",auth.checkLoggedIn,userValid.checkPassword,user.userUpdatePassword);
-    
+    //Route tìm kiếm người dùng
+    router.get("/contact/find-users/:keyword",auth.checkLoggedIn,contactValid.checkFindContact,contact.findUsersContact);
 }
 module.exports = webRouter;
