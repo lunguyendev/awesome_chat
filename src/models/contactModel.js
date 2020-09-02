@@ -17,6 +17,15 @@ let ContactSchema = new Schema(
 ContactSchema.statics = {
     createItem(item){
         return this.create(item);
+    },
+    //Tìm kiếm tất cả các bản ghi liên quan đến UserID
+    findAllByUser(userId){
+        return this.find({
+            $or: [
+                {"userId":userId},
+                {"contactId":userId}
+            ]
+        }).exec();
     }
 }
 
