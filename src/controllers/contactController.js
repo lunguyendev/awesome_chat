@@ -30,7 +30,48 @@ let findUsersContact = async(req,res)=>{
         return res.status(500).send(error);
     }
 }
+let addFriend = async(req,res)=>{
+    
+    try {
+        //Lấy id của mình từ request
+        let currentUserId = req.user._id;
+        //Lấy id của người mình muốn kết bạn ở phía client gửi xuống
+        let contactId = req.body.uid;
+        //Lưu vào db Contact khi kết bạn
+        let newContact = await contact.addFriend(currentUserId,contactId);
+        // console.log(newContact);
+        // console.log(!!newContact);// Kiểm tra có tồn tại hay không, trả về true hoặc false
+        //Trả kết quả ngược lên client thông qua biến success
+        return res.status(200).send({"success":!!newContact})
+        // return res.render("main/contacts/sections/_fileUserContact",{users});
+    } catch (error) {
+        console.log(error);
+        return res.status(500).send(error);
+    }
+}
+let removeRequestContact = async(req,res)=>{
+    
+    try {
+        //Lấy id của mình từ request
+        let currentUserId = req.user._id;
+        //Lấy id của người mình muốn kết bạn ở phía client gửi xuống
+        let contactId = req.body.uid;
+        //Lưu vào db Contact khi kết bạn
+        let removeRequest = await contact.removeRequestContact(currentUserId,contactId);
+        // console.log(removeRequest);
+        // console.log(!!removeRequest);// Kiểm tra có tồn tại hay không, trả về true hoặc false
+        //Trả kết quả ngược lên client thông qua biến success
+        return res.status(200).send({"success":!!removeRequest})
+        // return res.render("main/contacts/sections/_fileUserContact",{users});
+    } catch (error) {
+        console.log(error);
+        return res.status(500).send(error);
+    }
+}
+
 module.exports = {
-    findUsersContact : findUsersContact
+    findUsersContact : findUsersContact,
+    addFriend: addFriend,
+    removeRequestContact:removeRequestContact
 }
 
