@@ -48,13 +48,19 @@ let webRouter = (app)=>{
         successFlash: true,
         failureFlash: true
     }));
+
     //Router cập nhật avatar người dùng
     router.put("/user/update-avatar",auth.checkLoggedIn,user.userUpdateAvatar);
     //Router cập nhật thông tin người dùng
     router.put("/user/update-info",auth.checkLoggedIn,userValid.checkUserUpdate,user.userUpdateInfo);
     //Roupet cập nhật mật khẩu
     router.put("/user/update-password",auth.checkLoggedIn,userValid.checkPassword,user.userUpdatePassword);
+    
     //Route tìm kiếm người dùng
     router.get("/contact/find-users/:keyword",auth.checkLoggedIn,contactValid.checkFindContact,contact.findUsersContact);
+    //Router thêm kết bạnngười dung
+    router.post("/contact/add-new",auth.checkLoggedIn,contact.addFriend);
+    //Router hủy kết bạn người dùng
+    router.delete("/contact/remove-request-contact",auth.checkLoggedIn,contact.removeRequestContact)
 }
 module.exports = webRouter;

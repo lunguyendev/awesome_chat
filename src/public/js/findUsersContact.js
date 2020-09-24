@@ -17,6 +17,9 @@ function callFindUsers(element){
         //Nhập đúng yêu cầu, gửi request tìm kiếm
         $.get(`/contact/find-users/${keyword}`, function(data){
             $('#find-user ul').html(data)
+            //Phải hiển thị tất cả các thông tin đã rồi mới nhấn nút kết bạn
+            addContact();
+            removeRequestContact();
         })
     }
 }

@@ -72,23 +72,26 @@ UserSchema.statics = {
     findByGoogleUid(uid){
         return this.findOne({'google.uid':uid}).exec();
     },
+    //Cập nhật thông tin người dùng theo id
     updateUserInfo(id,file)
     {
         return this.findByIdAndUpdate(id,file).exec();
     },
+    //Cập nhật password theo id
     updatePassword(id,hashedPassword){
         return this.findByIdAndUpdate(id,{"local.password":hashedPassword}).exec();
     },
+    //Tìm kiếm tất cả các người dùng có chưa key word và loại bỏ những id trong bảng deprecateUserIds
     findAllForAddContact(deprecatedUserIds,keyword){
         return this.find({
             $and:[
                 {"_id": {$nin: deprecatedUserIds}},
                 {"local.isActive":true},
                 {$or: [
-                    {"username":{"$regex":keyword}},
-                    {"local.email":{"$regex":keyword}},
-                    {"facebook.email":{"$regex":keyword}},
-                    {"google.email":{"$regex":keyword}},
+                    {"username":{"$regex": new RegExp(keyword,"i") }},
+                    {"local.email":{"$regex":new RegExp(keyword,"i") }},
+                    {"facebook.email":{"$regex":new RegExp(keyword,"i") }},
+                    {"google.email":{"$regex":new RegExp(keyword,"i") }},
                 ]}
             ]
         },{_id: 1, username: 1, address: 1, avatar: 1}).exec();

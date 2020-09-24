@@ -8,7 +8,7 @@ const { resolve, reject } = require("bluebird")
 let findUsersContact = (currentUserId,keyword)=>{
     return new Promise(async(resolve,reject)=>{
         //Lập bảng ra tìm những user id mà bạn đã kết bạn rồi
-        let deprecatedUserIds = []
+        let deprecatedUserIds = [currentUserId];
         //Tìm kiếm những id đã kết bạn với mình rồi
         let arrUserID = await ContactModel.findAllByUser(currentUserId);
         //Lọc ra những id ở trên đẩy vào một mảng
@@ -29,6 +29,39 @@ let findUsersContact = (currentUserId,keyword)=>{
     })  
 }
 
+let addFriend = (currentUserId,contactID)=>{
+    return new Promise(async(resolve,reject)=>{
+        //Kiểm tra xem đã tồn tại những userId của mình đã kết bạn chưa
+        let contactExists = await ContactModel.checkExists(currentUserId,contactID);
+        if(contactExists){
+            return reject(false);
+        }
+        //Nếu chưa thì tạo bản ghi kết bạn trong contact
+        let newContactItem = {
+            "userId" : currentUserId,
+            "contactId": contactID,
+        }
+        //Thêm bản ghi vào contact
+        let newContact = await ContactModel.createItem(newContactItem);
+        resolve(newContact)
+    })  
+}
+let removeRequestContact = (currentUserId,contactID)=>{
+    return new Promise(async(resolve,reject)=>{
+        //Kiểm tra xem đã tồn tại những userId của mình đã kết bạn chưa
+        let removeRequest = await ContactModel.removeRequestContact(currentUserId,contactID);
+        if(removeRequest.result.n === 0)
+        {
+            return reject(false);
+        }
+        return resolve(true);
+    })  
+}
+
+
+
 module.exports = {
-    findUsersContact : findUsersContact
+    findUsersContact : findUsersContact,
+    addFriend: addFriend,
+    removeRequestContact:removeRequestContact
 }
