@@ -16,14 +16,17 @@ let sessionStore = new mongoDBStrore({
 });
 
 //Cấu hình session
-let configSession = (app) =>{
+let config = (app) =>{
     app.use(session({
-        key: "express.sid",
-        secret: 'mySecret',
+        key: process.env.SESSION_KEY,
+        secret: process.env.SESSION_MYSECRET,
         store: sessionStore,
         resave: true,
         saveUninitialized: false,
         cookie: { maxAge: 1000*60*60*24} // Set thời gian sống cho cookie là 1 ngày
     }));
 };
-module.exports = configSession;
+module.exports = {
+    config : config,
+    sessionStore: sessionStore,
+}

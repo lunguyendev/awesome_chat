@@ -1,13 +1,4 @@
-function decreaseNumberRequestContact(className){
-    //Tìm số người kêt bạn hiện tại
-    let currentRequest = +$(`.${className}`).find("em").text();
-    currentRequest -= 1;
-    if(currentRequest == 0){
-        $(`.${className}`).html("");
-    }else{
-        $(`.${className}`).html(`(<em>${currentRequest}</em>)`);
-    }
-}
+
 function removeRequestContact(){
     $(".user-remove-request-contact").bind("click",function (){
         //Lấy data id của user người dùng từ thẻ html của thuộc tính data

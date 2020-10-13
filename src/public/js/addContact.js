@@ -14,6 +14,7 @@ function addContact(){
                 //hiển thị nút hủy yêu cầu
                 $("#find-user").find(`div.user-remove-request-contact[data-uid = ${targetID}]`).css("display","inline-block");
                 increaseNumberRequestContact("count-request-contact-sent");
+                socket.emit("add-new-contact",{contactId: targetID});
             }     
         });
     })
